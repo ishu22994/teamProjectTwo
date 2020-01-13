@@ -20,11 +20,13 @@ public class WritingServiceImpl implements WritingService {
 
     @Override
     public void writePostgres() {
+        //read from kafka
         employeePostgresRepository.save(employeePostgres);
     }
 
     @Override
     public void writeMongo() {
+        //read from kafka
         employeeMongoRepository.save(employeeMongoDB);
     }
 }
