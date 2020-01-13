@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class EmployeeDTO {
 
+    private String empId;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
