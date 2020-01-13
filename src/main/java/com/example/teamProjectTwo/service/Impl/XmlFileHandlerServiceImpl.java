@@ -5,6 +5,7 @@ import com.example.teamProjectTwo.repository.EmployeePostgresRepository;
 import com.example.teamProjectTwo.service.EmployeeServicePostgres;
 import com.example.teamProjectTwo.service.MyFileHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -19,6 +20,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+    @Service
     public class XmlFileHandlerServiceImpl implements MyFileHandler,EmployeeServicePostgres {
 
         @Autowired
