@@ -1,9 +1,12 @@
 package com.example.teamProjectTwo.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
-public class Employee {
-
+@Entity
+@Table(name = "EMPLOYEE")
+public class EmployeePostgres {
 
     private String firstName;
     private String lastName;
