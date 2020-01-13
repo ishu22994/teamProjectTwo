@@ -3,6 +3,7 @@ package com.example.teamProjectTwo.service.Impl;
 import com.example.teamProjectTwo.dto.EmployeeDTO;
 
 
+import com.example.teamProjectTwo.service.MyFileHandler;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -10,11 +11,14 @@ import org.json.*;
 import org.apache.tomcat.util.json.ParseException;
 
 import java.io.FileReader;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class JsonFileHandlerServiceImpl {
 
+public class JsonFileHandlerServiceImpl implements MyFileHandler {
+
+    @Override
     public  void  read() throws Exception {
         String filename="/Users/ishitshah/Downloads/employee.json";
         FileReader reader = new FileReader(filename);
@@ -35,6 +39,12 @@ public class JsonFileHandlerServiceImpl {
 
         }
     }
+
+    @Override
+    public void write() throws IOException, Exception {
+
+    }
+
     private static  Date parseDate(String date, String format) throws ParseException,
             java.text.ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat(format);
