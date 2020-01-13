@@ -1,11 +1,7 @@
 package com.example.teamProjectTwo.service.Impl;
 
 import com.example.teamProjectTwo.dto.EmployeeDTO;
-import com.example.teamProjectTwo.entity.EmployeePostgres;
-import com.example.teamProjectTwo.repository.EmployeePostgresRepository;
-import com.example.teamProjectTwo.service.EmployeeServicePostgres;
 import com.example.teamProjectTwo.service.MyFileHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,12 +15,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
-public class XmlFileHandlerServiceImpl implements MyFileHandler, EmployeeServicePostgres {
+public class XmlFileHandlerServiceImpl implements MyFileHandler {
 
-    @Autowired
-    EmployeePostgresRepository employeePostgresRepository;
 
-    EmployeePostgres employeePostgres;
+
 
     @Override
     public void read() {
@@ -56,20 +50,8 @@ public class XmlFileHandlerServiceImpl implements MyFileHandler, EmployeeService
     }
 
 
-    @Override
-    public void write() {
 
 
-        //fetch from kafka
-
-
-    }
-
-
-    @Override
-    public void addPostgres(EmployeePostgres employeePostgres) {
-        employeePostgresRepository.save(employeePostgres);
-    }
 
 }
 

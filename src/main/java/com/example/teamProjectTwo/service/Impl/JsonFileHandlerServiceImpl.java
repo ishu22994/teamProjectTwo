@@ -3,29 +3,22 @@ package com.example.teamProjectTwo.service.Impl;
 import com.example.teamProjectTwo.dto.EmployeeDTO;
 
 
-import com.example.teamProjectTwo.entity.EmployeeMongoDB;
-import com.example.teamProjectTwo.repository.EmployeeMongoRepository;
-import com.example.teamProjectTwo.service.EmployeeServiceMongo;
 import com.example.teamProjectTwo.service.MyFileHandler;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.*;
 import org.apache.tomcat.util.json.ParseException;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.FileReader;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class JsonFileHandlerServiceImpl implements MyFileHandler,EmployeeServiceMongo {
+public class JsonFileHandlerServiceImpl implements MyFileHandler {
 
-    @Autowired
-    EmployeeMongoRepository employeeMongoRepository;
 
-    EmployeeMongoDB employeeMongoDB;
+
+
 
     @Override
     public  void  read() throws Exception {
@@ -59,16 +52,5 @@ public class JsonFileHandlerServiceImpl implements MyFileHandler,EmployeeService
     }
 
 
-    @Override
-    public void write() throws IOException, Exception {
 
-        //fetch from kafka
-
-    }
-
-
-    @Override
-    public void addMongo(EmployeeMongoDB employeeMongoDB) {
-        employeeMongoRepository.save(employeeMongoDB);
-    }
 }

@@ -53,9 +53,6 @@ public class CsvFileHandlerServiceImpl implements MyFileHandler {
         }
     }
 
-    @Override
-    public void write(){
 
-    }
 
 }

@@ -1,10 +1,12 @@
 package com.example.teamProjectTwo.controller;
 
-import com.example.teamProjectTwo.TeamProjectTwoApplication;
+
 import com.example.teamProjectTwo.service.Impl.CsvFileHandlerServiceImpl;
 import com.example.teamProjectTwo.service.Impl.JsonFileHandlerServiceImpl;
+import com.example.teamProjectTwo.service.Impl.WritingServiceImpl;
 import com.example.teamProjectTwo.service.Impl.XmlFileHandlerServiceImpl;
 import com.example.teamProjectTwo.service.MyFileHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,9 @@ public class ThreadController extends Thread {
 
     MyFileHandler myFileHandler;
     boolean checkReadWrite;
+
+    @Autowired
+    WritingServiceImpl writingServiceImpl;
 
     ThreadController(String name, MyFileHandler myFileHandler,boolean checkReadWrite)
     {
@@ -33,7 +38,11 @@ public class ThreadController extends Thread {
             }
         }else{
             try{
-                myFileHandler.write();
+                if(Thread.currentThread().getName().equals("MongoWriteThread")){
+                    writingServiceImpl.writeMongo();
+                }else{
+                    writingServiceImpl.writePostgres();
+                }
             }catch (Exception e) {
                 e.printStackTrace();
             }
@@ -57,18 +66,16 @@ public class ThreadController extends Thread {
         Thread3.join();
 
 
-        ThreadController Thread4 = new ThreadController("CSVWriteThread", new CsvFileHandlerServiceImpl(),false);
+        ThreadController Thread4 = new ThreadController("MongoWriteThread", null,false);
         Thread4.start();
 
-        ThreadController Thread5 = new ThreadController("XMLWriteThread",new XmlFileHandlerServiceImpl(),false);
+        ThreadController Thread5 = new ThreadController("PostgresWriteThread",null,false);
         Thread5.start();
 
-        ThreadController Thread6 = new ThreadController("JSONWriteThread",new JsonFileHandlerServiceImpl(),false);
-        Thread6.start();
+
 
         Thread4.join();
         Thread5.join();
-        Thread6.join();
 
     }
 
