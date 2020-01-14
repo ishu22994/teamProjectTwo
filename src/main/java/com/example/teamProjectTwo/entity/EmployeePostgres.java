@@ -1,6 +1,7 @@
 package com.example.teamProjectTwo.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
@@ -8,6 +9,7 @@ import java.util.Date;
 @Table(name = "EMPLOYEE")
 public class EmployeePostgres {
 
+    @Id
     private String firstName;
     private String lastName;
     private Date dateOfBirth;

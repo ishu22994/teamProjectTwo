@@ -6,7 +6,9 @@ import com.example.teamProjectTwo.repository.EmployeeMongoRepository;
 import com.example.teamProjectTwo.repository.EmployeePostgresRepository;
 import com.example.teamProjectTwo.service.WritingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class WritingServiceImpl implements WritingService {
 
     @Autowired

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class KafkaConsumer
 {
-    @KafkaListener(topics = "Kafka_Example")
+    @KafkaListener(topics = "kafka1")
     public void consume(String  employee) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         EmployeePostgres employee1 = objectMapper.readValue(employee, EmployeePostgres.class);

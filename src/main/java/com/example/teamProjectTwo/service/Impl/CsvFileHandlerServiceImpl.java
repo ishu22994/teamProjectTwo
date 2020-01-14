@@ -3,6 +3,7 @@ package com.example.teamProjectTwo.service.Impl;
 import com.example.teamProjectTwo.dto.EmployeeDTO;
 import com.example.teamProjectTwo.service.MyFileHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -12,15 +13,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Service
 public class CsvFileHandlerServiceImpl implements MyFileHandler {
 
 
     @Autowired
-    KafkaController kafkaController;
+    private KafkaController kafkaController;
 
     @Override
     public  void read() {
-        String csvFile = "/Users/ishitshah/Downloads/employee.csv";
+        String csvFile = "/Users/namanbhatt/Downloads/employee.csv";
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";

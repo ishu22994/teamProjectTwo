@@ -9,12 +9,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.apache.tomcat.util.json.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+@Service
 public class JsonFileHandlerServiceImpl implements MyFileHandler {
 
     @Autowired
@@ -24,7 +25,7 @@ public class JsonFileHandlerServiceImpl implements MyFileHandler {
 
     @Override
     public  void  read() throws Exception {
-        String filename="/Users/ishitshah/Downloads/employee.json";
+        String filename="/Users/namanbhatt/Downloads/employee.json";
         FileReader reader = new FileReader(filename);
         JSONParser jsonParser = new JSONParser();
         Object jsonData = jsonParser.parse(reader);

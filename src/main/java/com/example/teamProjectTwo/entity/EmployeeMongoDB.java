@@ -1,13 +1,15 @@
 package com.example.teamProjectTwo.entity;
 
+import org.hibernate.validator.internal.IgnoreForbiddenApisErrors;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Id;
 import java.util.Date;
 
 @Document(collection = "employee")
 public class EmployeeMongoDB {
 
-
+    @Id
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
