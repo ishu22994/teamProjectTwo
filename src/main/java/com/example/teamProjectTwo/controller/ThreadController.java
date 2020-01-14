@@ -7,16 +7,17 @@ import com.example.teamProjectTwo.service.Impl.WritingServiceImpl;
 import com.example.teamProjectTwo.service.Impl.XmlFileHandlerServiceImpl;
 import com.example.teamProjectTwo.service.MyFileHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.PostConstruct;
 
 @RestController
 @RequestMapping("/threadCall")
 public class ThreadController extends Thread {
 
     MyFileHandler myFileHandler;
-    //boolean checkReadWrite;
+
 
     @Autowired
     WritingServiceImpl writingServiceImpl;
@@ -25,12 +26,19 @@ public class ThreadController extends Thread {
     {
         super(name);
         this.myFileHandler = myFileHandler;
-        //this.checkReadWrite = checkReadWrite;
+
+      }
+    public void run()
+    {
+
+        if(myFileHandler != null){
+
     }
     public void run()
     {
 
         if(myFileHandler!= null){
+
             try{
                 myFileHandler.read();
             }catch (Exception e) {
@@ -49,7 +57,7 @@ public class ThreadController extends Thread {
         }
     }
 
-    @GetMapping
+    @PostConstruct
     public void threadCalling() throws InterruptedException{
 
         ThreadController Thread1 = new ThreadController("CSVWriteThread", new CsvFileHandlerServiceImpl());
