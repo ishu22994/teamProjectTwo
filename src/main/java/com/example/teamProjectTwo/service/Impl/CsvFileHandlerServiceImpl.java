@@ -62,4 +62,8 @@ public class CsvFileHandlerServiceImpl implements MyFileHandler {
         }
     }
 
+    public int columnsInCSV(){
+        return 5;
+    }
+
 }

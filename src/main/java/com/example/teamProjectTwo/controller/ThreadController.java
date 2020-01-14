@@ -1,10 +1,9 @@
 package com.example.teamProjectTwo.controller;
 
 
-import com.example.teamProjectTwo.listener.KafkaConsumer;
+import com.example.teamProjectTwo.service.Impl.KafkaConsumer;
 import com.example.teamProjectTwo.service.Impl.CsvFileHandlerServiceImpl;
 import com.example.teamProjectTwo.service.Impl.JsonFileHandlerServiceImpl;
-import com.example.teamProjectTwo.service.Impl.KafkaController;
 import com.example.teamProjectTwo.service.Impl.XmlFileHandlerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/threadCall")
 public class ThreadController {
 
+    // TODO : Autowire with Qualifiers the interface and not implementations
     @Autowired
     private CsvFileHandlerServiceImpl csvFileHandlerService;
 
@@ -31,8 +31,8 @@ public class ThreadController {
     @GetMapping("/")
     public void threadCalling() throws InterruptedException{
 
-        
 
+        //System.out.println(csvFileHandlerService.columnsInCSV());
         Thread thread1 = new Thread(new ThreadRunnable(csvFileHandlerService));
         thread1.setName("CSVWriteThread");
         thread1.start();

@@ -1,4 +1,4 @@
-package com.example.teamProjectTwo.listener;
+package com.example.teamProjectTwo.service.Impl;
 
 
 import com.example.teamProjectTwo.entity.EmployeeMongoDB;
@@ -30,6 +30,7 @@ public class KafkaConsumer
             if(count<=150)
             {
                 EmployeePostgres employee1 = objectMapper.readValue(employee, EmployeePostgres.class);
+                // TODO : Use Services around Repository
                 employeePostgresRepository.save(employee1);
                 count++;
             }

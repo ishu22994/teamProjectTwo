@@ -47,8 +47,6 @@ public class XmlFileHandlerServiceImpl implements MyFileHandler {
 
                 kafkaController.post(employee);
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }

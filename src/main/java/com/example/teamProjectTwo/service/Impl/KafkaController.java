@@ -26,6 +26,7 @@ public class KafkaController
 
 
     public String post(EmployeeDTO employee) throws JsonProcessingException {
+        // TODO : Do i have to create new ObjectMappers per send?
         ObjectMapper objectMapper = new ObjectMapper();
         kafkaTemplate.send(TOPIC, objectMapper.writeValueAsString(employee));
         return "Published";

@@ -25,6 +25,7 @@ public class JsonFileHandlerServiceImpl implements MyFileHandler {
 
     @Override
     public  void  read() throws Exception {
+        // TODO: TO close resources after use
         String filename="/Users/namanbhatt/Downloads/employee.json";
         FileReader reader = new FileReader(filename);
         JSONParser jsonParser = new JSONParser();
