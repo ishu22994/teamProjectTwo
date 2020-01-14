@@ -1,39 +1,26 @@
 package com.example.teamProjectTwo.controller;
 
-import com.example.teamProjectTwo.service.Impl.WritingServiceImpl;
 import com.example.teamProjectTwo.service.MyFileHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class ThreadRunnable implements Runnable {
 
     MyFileHandler myFileHandler;
 
-    WritingServiceImpl writingServiceImpl;
-
-    public ThreadRunnable(MyFileHandler myFileHandler, WritingServiceImpl writingService) {
+    public ThreadRunnable(MyFileHandler myFileHandler) {
         this.myFileHandler = myFileHandler;
-        this.writingServiceImpl = writingService;
+        //this.writingServiceImpl = writingService;
     }
 
     @Override
     public void run() {
-        if(myFileHandler!= null){
+        if (myFileHandler != null) {
 
-            try{
+            try {
                 myFileHandler.read();
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else{
-            try{
-                if(Thread.currentThread().getName().equals("MongoWriteThread")){
-                    writingServiceImpl.writeMongo();
-                }else{
-                    writingServiceImpl.writePostgres();
-                }
-            }catch (Exception e) {
-                e.printStackTrace();
-            }
+
         }
     }
 }

@@ -1,17 +1,15 @@
 package com.example.teamProjectTwo.controller;
 
 
+import com.example.teamProjectTwo.listener.KafkaConsumer;
 import com.example.teamProjectTwo.service.Impl.CsvFileHandlerServiceImpl;
 import com.example.teamProjectTwo.service.Impl.JsonFileHandlerServiceImpl;
-import com.example.teamProjectTwo.service.Impl.WritingServiceImpl;
+import com.example.teamProjectTwo.service.Impl.KafkaController;
 import com.example.teamProjectTwo.service.Impl.XmlFileHandlerServiceImpl;
-import com.example.teamProjectTwo.service.MyFileHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.PostConstruct;
 
 @RestController
 @RequestMapping("/threadCall")
@@ -27,7 +25,7 @@ public class ThreadController {
     private  JsonFileHandlerServiceImpl jsonFileHandlerService;
 
     @Autowired
-    WritingServiceImpl writingServiceImpl;
+    KafkaConsumer kafkaConsumer;
 
 
     @GetMapping("/")
@@ -35,13 +33,13 @@ public class ThreadController {
 
         
 
-        Thread thread1 = new Thread(new ThreadRunnable(csvFileHandlerService, writingServiceImpl));
+        Thread thread1 = new Thread(new ThreadRunnable(csvFileHandlerService));
         thread1.setName("CSVWriteThread");
         thread1.start();
-        Thread thread2 = new Thread(new ThreadRunnable(xmlFileHandlerService, writingServiceImpl));
+        Thread thread2 = new Thread(new ThreadRunnable(xmlFileHandlerService));
         thread2.setName("XMLWriteThread");
         thread2.start();
-        Thread thread3 = new Thread(new ThreadRunnable(jsonFileHandlerService, writingServiceImpl));
+        Thread thread3 = new Thread(new ThreadRunnable(jsonFileHandlerService));
         thread3.setName("JSONWriteThread");
         thread3.start();
 
