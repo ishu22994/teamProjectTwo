@@ -31,11 +31,6 @@ public class ThreadController extends Thread {
     public void run()
     {
 
-        if(myFileHandler != null){
-
-    }
-    public void run()
-    {
 
         if(myFileHandler!= null){
 
