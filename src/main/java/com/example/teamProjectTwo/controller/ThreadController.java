@@ -16,21 +16,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class ThreadController extends Thread {
 
     MyFileHandler myFileHandler;
-    boolean checkReadWrite;
+    //boolean checkReadWrite;
 
     @Autowired
     WritingServiceImpl writingServiceImpl;
 
-    ThreadController(String name, MyFileHandler myFileHandler,boolean checkReadWrite)
+    ThreadController(String name, MyFileHandler myFileHandler)
     {
         super(name);
         this.myFileHandler = myFileHandler;
-        this.checkReadWrite = checkReadWrite;
+        //this.checkReadWrite = checkReadWrite;
     }
     public void run()
     {
 
-        if(checkReadWrite == true){
+        if(myFileHandler!= null){
             try{
                 myFileHandler.read();
             }catch (Exception e) {
@@ -52,13 +52,13 @@ public class ThreadController extends Thread {
     @GetMapping
     public void threadCalling() throws InterruptedException{
 
-        ThreadController Thread1 = new ThreadController("CSVWriteThread", new CsvFileHandlerServiceImpl(),true);
+        ThreadController Thread1 = new ThreadController("CSVWriteThread", new CsvFileHandlerServiceImpl());
         Thread1.start();
 
-        ThreadController Thread2 = new ThreadController("XMLWriteThread", new XmlFileHandlerServiceImpl() ,true);
+        ThreadController Thread2 = new ThreadController("XMLWriteThread", new XmlFileHandlerServiceImpl() );
         Thread2.start();
 
-        ThreadController Thread3 = new ThreadController("JSONWriteThread",new JsonFileHandlerServiceImpl(),true);
+        ThreadController Thread3 = new ThreadController("JSONWriteThread",new JsonFileHandlerServiceImpl());
         Thread3.start();
 
         Thread1.join();
@@ -66,10 +66,10 @@ public class ThreadController extends Thread {
         Thread3.join();
 
 
-        ThreadController Thread4 = new ThreadController("MongoWriteThread", null,false);
+        ThreadController Thread4 = new ThreadController("MongoWriteThread", null);
         Thread4.start();
 
-        ThreadController Thread5 = new ThreadController("PostgresWriteThread",null,false);
+        ThreadController Thread5 = new ThreadController("PostgresWriteThread",null);
         Thread5.start();
 
 

@@ -25,7 +25,6 @@ public class CsvFileHandlerServiceImpl implements MyFileHandler {
             br = new BufferedReader(new FileReader(csvFile));
             while ((line = br.readLine()) != null) {
 
-                // use comma as separator
                 String[] c = line.split(cvsSplitBy);
                 double experience = new Double(c[3]);
                 Date date = new SimpleDateFormat("MM/dd/yy").parse(c[2]);
@@ -35,6 +34,7 @@ public class CsvFileHandlerServiceImpl implements MyFileHandler {
                 employeeDTO.setDateOfBirth(date);
                 employeeDTO.setExperience(experience);
             }
+            //send employeeDto to kafka
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -52,7 +52,5 @@ public class CsvFileHandlerServiceImpl implements MyFileHandler {
             }
         }
     }
-
-
 
 }
