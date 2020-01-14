@@ -22,7 +22,7 @@ public class KafkaController
     KafkaTemplate<String, String> kafkaTemplate ;
 
 
-    private static final String TOPIC ="kafka1";
+    private static final String TOPIC ="kafka4";
 
 
     public String post(EmployeeDTO employee) throws JsonProcessingException {
