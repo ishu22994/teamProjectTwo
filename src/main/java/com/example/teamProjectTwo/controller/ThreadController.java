@@ -18,6 +18,7 @@ public class ThreadController extends Thread {
 
     MyFileHandler myFileHandler;
 
+
     @Autowired
     WritingServiceImpl writingServiceImpl;
 
@@ -25,11 +26,19 @@ public class ThreadController extends Thread {
     {
         super(name);
         this.myFileHandler = myFileHandler;
+
       }
     public void run()
     {
 
         if(myFileHandler != null){
+
+    }
+    public void run()
+    {
+
+        if(myFileHandler!= null){
+
             try{
                 myFileHandler.read();
             }catch (Exception e) {

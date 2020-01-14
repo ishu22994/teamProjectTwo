@@ -2,6 +2,8 @@ package com.example.teamProjectTwo.service.Impl;
 
 import com.example.teamProjectTwo.dto.EmployeeDTO;
 import com.example.teamProjectTwo.service.MyFileHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -17,8 +19,8 @@ import java.util.Date;
 @Service
 public class XmlFileHandlerServiceImpl implements MyFileHandler {
 
-
-
+    @Autowired
+    private KafkaTemplate<String, EmployeeDTO> kafkaTemplate;
 
     @Override
     public void read() {
@@ -44,6 +46,7 @@ public class XmlFileHandlerServiceImpl implements MyFileHandler {
                 employee.setExperience(experience);
             }
             //send to kafka
+
         } catch (Exception e) {
             e.printStackTrace();
         }
