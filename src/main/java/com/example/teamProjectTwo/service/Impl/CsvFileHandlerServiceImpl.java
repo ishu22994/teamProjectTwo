@@ -2,6 +2,7 @@ package com.example.teamProjectTwo.service.Impl;
 
 import com.example.teamProjectTwo.dto.EmployeeDTO;
 import com.example.teamProjectTwo.service.MyFileHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -12,6 +13,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CsvFileHandlerServiceImpl implements MyFileHandler {
+
+
+    @Autowired
+    KafkaController kafkaController;
 
     @Override
     public  void read() {
@@ -33,6 +38,8 @@ public class CsvFileHandlerServiceImpl implements MyFileHandler {
                 employeeDTO.setLastName(c[1]);
                 employeeDTO.setDateOfBirth(date);
                 employeeDTO.setExperience(experience);
+
+                kafkaController.post(employeeDTO);
             }
             //send employeeDto to kafka
 

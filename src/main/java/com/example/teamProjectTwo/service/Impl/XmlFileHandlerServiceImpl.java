@@ -20,7 +20,7 @@ import java.util.Date;
 public class XmlFileHandlerServiceImpl implements MyFileHandler {
 
     @Autowired
-    private KafkaTemplate<String, EmployeeDTO> kafkaTemplate;
+    KafkaController kafkaController;
 
     @Override
     public void read() {
@@ -44,8 +44,10 @@ public class XmlFileHandlerServiceImpl implements MyFileHandler {
                 employee.setLastName(lastName);
                 employee.setDateOfBirth(date);
                 employee.setExperience(experience);
+
+                kafkaController.post(employee);
             }
-            //send to kafka
+
 
         } catch (Exception e) {
             e.printStackTrace();

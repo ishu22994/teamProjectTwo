@@ -8,6 +8,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.apache.tomcat.util.json.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
@@ -16,7 +17,8 @@ import java.util.Date;
 
 public class JsonFileHandlerServiceImpl implements MyFileHandler {
 
-
+    @Autowired
+    KafkaController kafkaController;
 
 
 
@@ -39,7 +41,7 @@ public class JsonFileHandlerServiceImpl implements MyFileHandler {
             employee.setDateOfBirth(date);
             employee.setExperience(experiance);
 
-            //send to kafka
+            kafkaController.post(employee);
         }
     }
 
